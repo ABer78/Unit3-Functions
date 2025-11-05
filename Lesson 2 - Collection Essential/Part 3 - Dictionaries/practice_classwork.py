@@ -14,7 +14,7 @@ def get_user_bio(user):
     if bio == None:
         return "No bio available"
     return bio
-
+ 
 
 print(get_user_bio({"username": "coder", "bio": "Python enthusiast"}))
 # "Python enthusiast"
