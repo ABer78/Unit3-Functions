@@ -5,10 +5,9 @@
 
 # Question 6
 def make_notification(user, *messages, urgent=False):
-    if urgent == True:
-        urgent = "URGENT"
-        return urgent, user, *messages
-    return user, *messages
+    message_string = ", ".join(messages)
+    prefix = "URGENT: " if urgent else ""
+    return f"{prefix}{user} - {message_string}"
 
 
 print(make_notification("admin", "Server down!", urgent=True))
@@ -25,7 +24,15 @@ print()
 
 # Question 8
 def log_action(actor, *actions, timestamp=None, **context):
-    return f"{actor}: {actions} | {context}"
+    actions_string = ", ".join(actions)
+    context_pairs = []
+    for key, value in context.items():
+        context_pairs.append(f"{key}={value}")
+    context_string = ", ".join(context_pairs)
+    log = f"{actor}: {actions_string}"
+    if context_string:
+        log += f" | {context_string}"
+    return log
 
 
 print(log_action("bot", "login", "scan", source="API", ip="1.2.3.4"))
