@@ -205,3 +205,68 @@ if __name__ == "__main__":
 
     if total_points == 100:
         print("🌟 PERFECT SCORE! All solutions correct!")
+
+
+# Question 13
+def reverse_words(sentence):
+    if not sentence:
+        return ""
+    words = sentence.split()
+    reversed_words = words[::-1]  # or reversed(words)
+    return " ".join(reversed_words)
+
+
+print(reverse_words("Hello World"))  # World Hello
+
+
+# Question 18
+def find_longest(words):
+    if not words:
+        return "", 0
+
+    longest = words[0]
+    for word in words:
+        if len(word) > len(longest):
+            longest = word
+    return longest, len(longest)
+
+
+print(find_longest("Hello Worlds"))  # Worlds
+
+
+# Question 19
+def merge_dicts(dict1, dict2):
+    result = {}
+    for key, value in dict1.items():
+        result[key] = value
+    for key, value in dict2.items():
+        result[key] = value
+    return result
+
+
+print(merge_dicts({"name": "Carl"}, {"age": 15, "grade": 11}))
+# {'name': 'Carl', 'age': 15, 'grade': 11}
+
+
+# Question 20
+def grade_calculator(*scores, curve=0):
+    try:
+        average = sum(scores) / len(scores) + curve
+    except ZeroDivisionError:
+        return 0, "F"
+
+    if average >= 90:
+        letter = "A"
+    elif average >= 80:
+        letter = "B"
+    elif average >= 70:
+        letter = "C"
+    elif average >= 60:
+        letter = "D"
+    else:
+        letter = "F"
+    return letter
+
+
+print(grade_calculator(85, 93, 68, 79))  # B
+print(grade_calculator(95, 93, 98, 89))  # A
